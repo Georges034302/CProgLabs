@@ -1,7 +1,5 @@
 #!/bin/bash
 
-gcc -Wall -Werror -o $2 $1 -lm
+gcc -Wall -ansi $1 -lm -o $2
 
 ./$2
-
-echo
