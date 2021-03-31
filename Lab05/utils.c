@@ -32,15 +32,14 @@ Student createStudent(){
 }
 
 void addStudent(){
-    Student s = createStudent();
-    char *filename = file_name;
-    FILE *file = fopen(filename,"ab+");
+    Student s = createStudent();    
+    FILE *file = fopen(file_name,"ab+");
     if(file == NULL){
-        fprintf(stderr,"\n Error while opening %s\n",filename);
+        fprintf(stderr,"\n Error while opening %s\n",file_name);
         exit(1);
     }
     fwrite(&s,sizeof(Student),1,file);
-    printf("%s profile has been successfully saved to %s\n",s.name,filename);
+    printf("%s profile has been successfully saved to %s\n",s.name,file_name);
     printf("\n");
     fclose(file);
 }
@@ -55,21 +54,21 @@ void readStudent(){
         exit(1);
     }
     while(fread(&s,sizeof(Student),1,file)){
-        if(strcmp(s.name,aname) == 0){
+        if(strcmp(s.name,aname) == 0 || exist(s.name,aname)){
             U_ON;
-            printf(">> Student %s profile:\n",aname);
+            printf(">> Student %s profile:",aname);
             U_OFF;
             U_ON;
             HEADER;
             U_OFF;
-            printf("\n\t%d\t%-10s\t%d\t%s",s.id,s.name,s.mark,s.grade);
+            printf("\t%d\t%-10s\t%d\t%s",s.id,s.name,s.mark,s.grade);
             found = true;
             break;
         }
     }
     if(!found)
         printf("%s profile was not found in %s \n",aname,file_name);
-    printf("\n");
+    printf("\n\n");
     fclose(file);
 }
 
@@ -84,8 +83,8 @@ void viewRecord(){
     HEADER;
     U_OFF;
     while(fread(&s,sizeof(Student),1,file))
-        printf("\n\t%d\t%-10s\t%d\t%s",s.id,s.name,s.mark,s.grade);
-    printf("\n");
+        printf("\t%d\t%-10s\t%d\t%s\n",s.id,s.name,s.mark,s.grade);
+    printf("\n\n");
     fclose(file);
 }
 
