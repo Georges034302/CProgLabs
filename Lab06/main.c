@@ -17,14 +17,25 @@ int main(void){
 void menu(){
     help();
     char choice;  
-    
+    int min;
+    int max;
+    int size;
+    int *parray;
     while((choice = readChar("Choice [g/s/v/x] -> ")) != 'x'){        
         switch(choice){  
-            case 'g' : ;
+            case 'g' : {
+                min = readInt("Min = ");
+                max = readInt("Max = ");
+                size = readInt("Size= ");
+                parray = randomArray(min,max,size);
+                U_ON;printf("Random integer array properies:");U_OFF;
+                U_ON;HEADER;U_OFF;
+                printf("\t%d\t%d\t%d\t%p\n\n",min,max,size,parray);
+            };
                 break;   
-            case 's' : ;
+            case 's' : sort(size,parray);
                 break;       
-            case 'v' : ;
+            case 'v' : show("\nRandom Array:",size,parray);
                 break;
             default : help(); 
                 break;
