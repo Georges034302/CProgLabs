@@ -1,0 +1,11 @@
+John Smith,630
+Jack Noris,119
+Jane Doe,847
+Stephen King,235
+Lucy Lu,554
+Alana Jones,125
+Paul Wu,247
+Amy Russel,512
+Dan Ortega,823
+Lara Hertz,468
+Rachel Park,168
